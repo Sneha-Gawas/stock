@@ -25,6 +25,7 @@ def fetch_stock_data(stock_ticker):
         if data.empty:
             st.error("No data found! Please check the stock symbol.")
             return None
+        data.columns = [col[0] if isinstance(col, tuple) else col for col in data.columns]
         return data
     except Exception as e:
         st.error(f"Error fetching data: {e}")
